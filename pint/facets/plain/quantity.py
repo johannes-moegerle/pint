@@ -842,6 +842,14 @@ class PlainQuantity(Generic[MagnitudeT], PrettyIPython, SharedRegistryObject):
 
         return self._add_sub(other, operator.add)
 
+    @overload
+    def __add__(self, other: datetime.datetime) -> datetime.timedelta:  # type: ignore[misc]
+        ...
+
+    @overload
+    def __add__(self, other) -> PlainQuantity[MagnitudeT]:
+        ...
+
     def __add__(self, other):
         if isinstance(other, datetime.datetime):
             return self.to_timedelta() + other
