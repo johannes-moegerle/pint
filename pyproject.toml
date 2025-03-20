@@ -211,5 +211,6 @@ exclude = ["pint/testsuite"]
 HAS_BABEL = true
 HAS_UNCERTAINTIES = true
 HAS_NUMPY = true
+HAS_SCIPY = true
 AS_MIP = true
 HAS_DASK = true

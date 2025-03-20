@@ -14,8 +14,9 @@ if TYPE_CHECKING:
 
 
 HAS_NUMPY = False
+HAS_SCIPY = False
 if TYPE_CHECKING:
-    from .compat import HAS_NUMPY
+    from .compat import HAS_NUMPY, HAS_SCIPY
 
 if HAS_NUMPY:
     from .compat import np
@@ -26,8 +27,15 @@ else:
     Scalar: TypeAlias = Union[float, int, Decimal, Fraction]
     Array: TypeAlias = Never
 
+if HAS_SCIPY:
+    import scipy.sparse
+
+    Spmatrix: TypeAlias = scipy.sparse.spmatrix
+else:
+    Spmatrix: TypeAlias = Never
+
 # TODO: Change when Python 3.10 becomes minimal version.
-Magnitude = Union[Scalar, Array]
+Magnitude = Union[Scalar, Array, Spmatrix]
 
 UnitLike = Union[str, dict[str, Scalar], "UnitsContainer", "Unit"]
 

@@ -227,6 +227,13 @@ except ImportError:
     HAS_NUMPY = False
 
 try:
+    import scipy  # noqa: F401
+
+    HAS_SCIPY = True
+except ImportError:
+    HAS_SCIPY = False
+
+try:
     import mip  # noqa: F401
 
     HAS_MIP = True
